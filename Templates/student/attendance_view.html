@@ -1,0 +1,38 @@
+{% extends 'studentadmindash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="col-lg-6">
+    {% for i in messages %}
+    <div class="alert alert-info" role="alert">
+        {{i}}
+    </div>
+    {% endfor %}
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">STUDENT ATTENDANCE ON {{date}} </strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+    <tr>
+        <th>SI NO</th>
+        <th>NAME </th>
+        <th>ATTENDANCE </th>
+        <th>VIEW </th>
+    </tr>
+        {% for attendance in attendance %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{attendance.student}}</td>
+        <td>{{attendance.status}}</td>
+        <td>{{attendance.time}}</td>
+    </tr>
+{% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+</div>
+{% endblock %}

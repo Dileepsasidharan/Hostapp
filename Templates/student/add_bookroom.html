@@ -1,0 +1,15 @@
+{% extends 'studentadmindash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card" style="width: 36rem;">
+    <div class="card-body">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+    </div>
+</div>
+
+{% endblock %}

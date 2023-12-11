@@ -1,0 +1,44 @@
+{% extends 'wardenadmindash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">PARENT DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+  <tr>
+        <th>SI NO</th>
+        <th>NAME</th>
+        <th>ADDRESS</th>
+        <th>CONTACT NO</th>
+        <th>EMAIL</th>
+        <th>IMAGES</th>
+        <th>COURSE</th>
+
+
+
+    </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.Phone_no}}</td>
+        <td>{{i.email}}</td>
+        <td><img src="{{i.photo.url}}" height="30px"></td>
+        <td>{{i.course}}</td>
+
+
+    </tr>
+    {% endfor %}
+
+                </thead>
+</table>
+        </div>
+</div>
+
+{% endblock %}

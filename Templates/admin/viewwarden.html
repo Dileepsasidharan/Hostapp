@@ -1,0 +1,48 @@
+{% extends 'adminindex.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">HOSTEL DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+        <th>SI NO</th>
+        <th>NAME</th>
+        <th>ADDRESS</th>
+        <th>EMAIL</th>
+        <th>PHONE_NO</th>
+        <th>PHOTO</th>
+        <th>Date of Joining</th>
+
+    </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.Name}}</td>
+        <td>{{i.Address}}</td>
+        <td>{{i.Email}}</td>
+        <td>{{i.Phone_no}}</td>
+        <td><img src="{{i.Photo.url}} "height="30px"></td>
+        <td>{{i.date_of_joining}}</td>
+       <td><a href = "{% url 'updatewarden' i.id %}" class="btn btn-success">Update</a></td>
+        <td>
+            <form action="{% url 'deletewarden' i.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="warden" value="{{ i.id }}">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+
+    </tr>
+    {% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+
+{% endblock %}

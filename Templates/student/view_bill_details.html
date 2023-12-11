@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Format</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'main.js' %}"></script>   <!-- new -->
+    <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
+<style>
+    *{
+            margin-left: 40px;
+            margin-right: 40px;
+
+    }
+   .border{
+     border-bottom: 6px solid black;
+   }
+   table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+th,td {
+  border: 1px solid black;
+
+}
+
+   table.d {
+  table-layout: fixed;
+  width: 95%;
+
+
+
+}
+
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+   <section class ="border">
+
+   <p>Bill No:{{data1.student_id}}</p>
+   <p>Student Name:{{data1.student}}</p>
+    </section>
+    <br>
+    <br>
+    <br>
+
+<section class="border">
+        <table class="d">
+            <tr>
+
+              <th>Room Rent:</th>
+              <th>Mess Fee:</th>
+              <th>Total Amount</th>
+            </tr>
+            <tr>
+              <td>{{data1.room_rent}}</td>
+              <td>{{data1.mess_fee}}</td>
+              <td>{{data1.get_total}}</td>
+            </tr>
+
+
+          </table>
+     </section>
+<section>
+
+        <p style="text-align: center;font-size: 15px;">Thank  you</p>
+         <br>
+          <button onclick=window.print()>Print</button>
+     </section>
+
+</body>
+</html>

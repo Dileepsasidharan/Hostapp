@@ -1,0 +1,36 @@
+{% extends 'adminindex.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-6">
+    {% for i in messages %}
+    <div class="alert alert-info" role="alert">
+        {{i}}
+    </div>
+    {% endfor %}
+    <div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white"> STUDENTS ATTENDANCE OF DATE {% now "jS F Y" %}</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+        <th>SI NO</th>
+        <th>STUDENT NAME</th>
+        <th>ATTENDANCE</th>
+                </tr>
+        {% for i in student %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td><a href="{% url 'mark' i.user_id %}">Mark</a></td>
+                </tr>
+    {% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+</div>
+
+{% endblock %}

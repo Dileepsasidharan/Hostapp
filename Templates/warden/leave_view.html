@@ -1,0 +1,53 @@
+{% extends 'wardenadmindash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="class">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">LEAVE APPROVAL</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+
+    <tr>
+        <th>SI NO</th>
+        <th>DATE</th>
+        <th>NAME</th>
+        <th>REASON</th>
+        <th>FROM</th>
+        <th>TO</th>
+        <th>TOTAL</th>
+        <th>ACTION</th>
+
+    </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.date_application}}</td>
+        <td>{{i.student}}</td>
+        <td>{{i.reason}}</td>
+        <td>{{i.start_date}}</td>
+        <td>{{i.end_date}}</td>
+        <td>{{i.date_diff}}</td>
+        <td>
+            {% if i.status == 0 %}
+            <a class="btn btn-warning" href="{% url 'approve_leave' i.id %}" type="submit">Approve</a>
+            <a class="btn btn-danger" href="{% url 'reject_leave' i.id %}" type="submit">Reject</a>
+
+            {% elif i.status == 1 %}
+            <p class="btn btn-success">Approved</p>
+            {% elif i.status == 2 %}
+            <p class="btn btn-danger">Rejected</p>
+            {% endif %}
+        </td>
+
+</tr>
+    {% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+
+{% endblock %}

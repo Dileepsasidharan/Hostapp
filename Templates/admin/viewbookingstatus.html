@@ -1,0 +1,59 @@
+{% extends 'adminindex.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">HOSTEL DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+        <th>SI NO</th>
+        <th>Student Name</th>
+        <th>Booked by</th>
+        <th>Booking date</th>
+        <th>Approve</th>
+        <th>Reject</th>
+
+
+    </tr>
+        {% for i in f %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.student}}</td>
+        <td>{{i.booked_by}}</td>
+        <td>{{i.booking_date}}</td>
+        <td>
+            {% if i.status == 0 %}
+            <a class="btn btn-warning" href="{% url 'confirm_booking' i.id %}">Approve</a>
+            <a class="btn btn-warning" href="{% url 'reject_booking' i.id %}">Reject</a>
+            {% elif i.status == 1 %}
+            <button class ="btn btn-success">Approved</button>
+            {% elif i.status == 2 %}
+            <button class ="btn btn-success">Rejected</button>
+
+
+            {% endif %}
+        </td>
+
+
+    </tr>
+
+    {% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+<div class="col-lg-12">
+                                {% for i in messages %}
+                                <div class="alert alert-info" role="alert">
+                                    {{i}}
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+{% endblock %}

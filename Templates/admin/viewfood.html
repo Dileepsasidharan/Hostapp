@@ -1,0 +1,39 @@
+{% extends 'adminindex.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">HOSTEL DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+        <th>SI NO</th>
+        <th>DAYS</th>
+        <th>BREAK FAST</th>
+        <th>LUNCH</th>
+        <th>DINNER</th>
+        <th>UPDATE</th>
+        <th>DELETE</th>
+
+    </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.day}}</td>
+        <td>{{i.Breakfast}}</td>
+        <td>{{i.Lunch}}</td>
+        <td>{{i.Dinner}}</td>
+        <td><a href = "{% url 'updatefood' i.id %}" class="btn btn-success">Update</a></td>
+        <td><a href = "{% url 'deletefood' i.id %}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+
+{% endblock %}

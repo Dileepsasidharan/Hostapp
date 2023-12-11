@@ -1,0 +1,33 @@
+{% extends 'parentadmindash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="col-lg-6">
+    {% for i in messages %}
+    <div class="alert alert-info" role="alert">
+        {{i}}
+    </div>
+    {% endfor %}
+<div class="col-lg-6">
+        <div class="card">
+
+            <div class="card-header  bg-primary">
+                <strong class="card-title " style="color:white">DELETE ACCOUNT</strong>
+            </div><div class="card-body">
+
+               <form method="post">
+                     {% csrf_token %}
+                        <h1> Delete your Account?</h1>
+                         <br>
+                         <br>
+                        <br>
+                        <div>
+                            <button type="submit" class="btn btn-success">YES</button>
+                            <a class="btn btn-danger" href="{% url 'view_hostelparent' %}" type="submit">NO</a>
+                        </div>
+               </form>
+           </div>
+     </div>
+    </div>
+</div>
+{% endblock %}

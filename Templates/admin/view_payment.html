@@ -1,0 +1,53 @@
+{% extends 'adminindex.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">HOSTEL DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+        <th>SI NO</th>
+        <th>NAME</th>
+        <th>HOSTEL</th>
+        <th>BILL DATE</th>
+        <th>FROM DATE</th>
+        <th>To DATE</th>
+        <th>DUE DATE</th>
+        <th>HOSTEL RENT</th>
+        <th>FOOD EXP</th>
+        <th>Total amount</th>
+
+    </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.student}}</td>
+        <td>{{i.Hostel}}</td>
+        <td>{{i.bill_date}}</td>
+        <td>{{i.from_date}}</td>
+        <td>{{i.to_date}}</td>
+        <td>{{i.to_date}}</td>
+        <td>{{i.room_rent}}</td>
+        <td>{{i.food_exp}}</td>
+        <td>{{i.get_total}}</td>
+        <td><a href="{% url 'view_bill_details' i.id %}">View</a></td>
+        <td> {% if i.status == 0 %}
+        <a href = ""  class="btn btn-danger">NOT PAID</a>
+            {% else %}
+            <button class ="btn btn-success">PAID</button>
+            {% endif %}
+        </td>
+
+    </tr>
+    {% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+
+{% endblock %}

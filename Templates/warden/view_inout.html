@@ -1,0 +1,47 @@
+{% extends 'wardenadmindash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="class">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white"> IN & OUT </strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+<tr>
+        <th>SI NO</th>
+        <th>DATE</th>
+        <th>NAME</th>
+        <th>REASON</th>
+        <th>OUT_TIME</th>
+        <th>IN_TIME</th>
+        <th>UPDATE REGISTER</th>
+        <th>STATUS</th>
+
+
+    </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.student}}</td>
+        <td>{{i.reason}}</td>
+        <td>{{i.out_time}}</td>
+        <td>{{i.in_time}}</td>
+        <td> {% if i.status == 0 %}
+            <button class="btn btn-danger">OUT @{{i.out_time}}</button>
+            <a href = "{% url 'update_in_reg' i.id %}" class="btn btn-info">ADD IN_TIME</a>
+            {% else %}
+            <button class="btn btn-success">Enter @{{i.in_time}}</button>
+            {% endif %}
+        </td>
+
+    {% endfor %}
+                </thead>
+</table>
+        </div>
+</div>
+
+{% endblock %}

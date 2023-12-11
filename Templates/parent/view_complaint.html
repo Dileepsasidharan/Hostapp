@@ -1,0 +1,42 @@
+{% extends 'parentadmindash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">Complaint</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+        <th>SI NO</th>
+        <th>Name</th>
+        <th>Complaint</th>
+        <th>Date</th>
+        <th>Reply</th>
+
+                </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user}}</td>
+        <td>{{i.complaint}}</td>
+        <td>{{i.date}}</td>
+        <td>{% if i.reply == None %}
+            <a href="{% url 'complaint_reply' i.id  %}">Reply Now</a>
+
+            {% else %}
+            {{i.reply}}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+                </thead>
+</table>
+        </div>
+</div>
+
+{% endblock %}
